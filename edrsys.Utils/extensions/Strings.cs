@@ -93,6 +93,28 @@ namespace edrsys.Utils.extensions
         }
 
         /// <summary>
+        /// Get Enum by code.
+        /// </summary>
+        /// <typeparam name="T">Enum Type.</typeparam>
+        /// <param name="value">Value To Enum.</param>
+        /// <param name="defaultEnum">Default enum in case value not exist.</param>
+        /// <returns>Enum finded.</returns>
+        public static T GetEnumByCode<T>(this string value, Enum defaultEnum) where T : Enum
+        {
+            Type type = typeof(T);
+
+            foreach (T itemEnum in type.GetEnumValues())
+            {
+                string temtEnum = itemEnum.GetCode();
+
+                if (value == temtEnum)
+                    return itemEnum;
+            }
+
+            return (T)defaultEnum;
+        }
+
+        /// <summary>
         /// Verify if is email.
         /// </summary>
         /// <param name="value">Value to verify</param>
@@ -109,6 +131,47 @@ namespace edrsys.Utils.extensions
             {
                 return false;
             }
+        }
+
+        public static bool IsNullOrEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value);
+        }
+
+        public static bool IsNullOrWhiteSpace(this string value)
+        {
+            return string.IsNullOrWhiteSpace(value);
+        }
+
+        public static bool LengthGreatherOrEqualThan(this string value, int length)
+        {
+            return (value ?? string.Empty).Length >= length;
+        }
+
+        public static bool LengthGreatherThan(this string value, int length)
+        {
+            return (value ?? string.Empty).Length > length;
+        }
+
+        public static bool LengthLessOrEqualThan(this string value, int length)
+        {
+            return (value ?? string.Empty).Length < length;
+        }
+
+        public static bool LengthLessThan(this string value, int length)
+        {
+            return (value ?? string.Empty).Length < length;
+        }
+
+        /// <summary>
+        /// Transform to Enum.
+        /// </summary>
+        /// <typeparam name="T">Enum Type.</typeparam>
+        /// <param name="value">Value to transform.</param>
+        /// <returns>Enum referent to value.</returns>
+        public static T ToEnum<T>(this string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
         }
     }
 }

@@ -34,6 +34,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\CodeAttribute.cs" />
+    <Compile Include="extensions\Enums.cs" />
     <Compile Include="extensions\Strings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
