@@ -6,17 +6,8 @@ using System.Text;
 
 namespace edrsys.Utils.extensions
 {
-    /// <summary>
-    /// Extentions to string class
-    /// </summary>
     public static class Strings
     {
-        /// <summary>
-        /// Dencript value.
-        /// </summary>
-        /// <param name="value">Value to dencription</param>
-        /// <param name="EncryptionKey">Key to dencription.</param>
-        /// <returns>Value encripted.</returns>
         public static string Decrypt(
             this string value,
             string EncryptionKey)
@@ -54,15 +45,9 @@ namespace edrsys.Utils.extensions
             return cipherText;
         }
 
-        /// <summary>
-        /// Encript value.
-        /// </summary>
-        /// <param name="value">Value to encription</param>
-        /// <param name="EncryptionKey">Key to encription.</param>
-        /// <returns>Value encripted.</returns>
         public static string Encrypt(
-            this string value,
-            string EncryptionKey)
+                   this string value,
+                   string EncryptionKey)
         {
             byte[] clearBytes = Encoding.Unicode.GetBytes(value);
             string clearText = string.Empty;
@@ -92,14 +77,9 @@ namespace edrsys.Utils.extensions
             return clearText;
         }
 
-        /// <summary>
-        /// Get Enum by code.
-        /// </summary>
-        /// <typeparam name="T">Enum Type.</typeparam>
-        /// <param name="value">Value To Enum.</param>
-        /// <param name="defaultEnum">Default enum in case value not exist.</param>
-        /// <returns>Enum finded.</returns>
-        public static T GetEnumByCode<T>(this string value, Enum defaultEnum) where T : Enum
+        public static T GetEnumByCode<T>(
+            this string value, 
+            Enum defaultEnum) where T : Enum
         {
             Type type = typeof(T);
 
@@ -114,11 +94,6 @@ namespace edrsys.Utils.extensions
             return (T)defaultEnum;
         }
 
-        /// <summary>
-        /// Verify if is email.
-        /// </summary>
-        /// <param name="value">Value to verify</param>
-        /// <returns>True if is email, false if not</returns>
         public static bool IsEmail(this string value)
         {
             try
@@ -163,15 +138,36 @@ namespace edrsys.Utils.extensions
             return (value ?? string.Empty).Length < length;
         }
 
-        /// <summary>
-        /// Transform to Enum.
-        /// </summary>
-        /// <typeparam name="T">Enum Type.</typeparam>
-        /// <param name="value">Value to transform.</param>
-        /// <returns>Enum referent to value.</returns>
+        public static decimal ToDecimal(this string value)
+        {
+            decimal valueResult = 0;
+
+            decimal.TryParse(value, out valueResult);
+
+            return valueResult;
+        }
+
         public static T ToEnum<T>(this string value)
         {
             return (T)Enum.Parse(typeof(T), value, true);
+        }
+
+        public static int ToInt(this string value)
+        {
+            int valueResult = 0;
+
+            int.TryParse(value, out valueResult);
+
+            return valueResult;
+        }
+
+        public static long ToLong(this string value)
+        {
+            long valueResult = 0;
+
+            long.TryParse(value, out valueResult);
+
+            return valueResult;
         }
     }
 }

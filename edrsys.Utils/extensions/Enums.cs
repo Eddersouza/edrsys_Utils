@@ -5,12 +5,6 @@ namespace edrsys.Utils.extensions
 {
     public static class Enums
     {
-        /// <summary>
-        /// Get Custom Attribute.
-        /// </summary>
-        /// <typeparam name="T">Type attribute.</typeparam>
-        /// <param name="value">Enum value to get attribute.</param>
-        /// <returns>Custom attribute.Attribute</returns>
         private static T GetAttribute<T>(this Enum value) where T : Attribute
         {
             var type = value.GetType();
@@ -21,11 +15,6 @@ namespace edrsys.Utils.extensions
               : null;
         }
 
-        /// <summary>
-        /// Get attribute Code in string.
-        /// </summary>
-        /// <param name="value">value of attribute.</param>
-        /// <returns>String value attribute.</returns>
         public static string GetCode(this Enum value)
         {
             var attribute = value.GetAttribute<CodeAttribute>();
